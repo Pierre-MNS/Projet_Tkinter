@@ -1,72 +1,69 @@
 from tkinter import *
 from tkinter import ttk
-from PIL import Image, ImageTk
 
 # //////////////////////////////////////////
-# Fonction pour ajouter les valeurs dans le tableau
+# Function for adding values to the table
 def ajouter_dans_tableau():
     nageur = input1.get()
     nage = input2.get()
     longueur = input3.get()
 
-    tableau.insert("", "end", values=(nageur, nage, longueur))
+    tableau.insert("", "end", values = (nageur, nage, longueur))
 # //////////////////////////////////////////
 
 
 
-# Creation de l'interface
+# Interface creation
 window = Tk()
 window.title("Interface Nageur")
 window.minsize(1000, 800)
 
-# Creation des 2 onglets
+# Creating the 2 tabs
 new_window = ttk.Notebook(window)
 first_window = ttk.Frame(new_window)
 second_window = ttk.Frame(new_window)
-new_window.add(first_window, text="Program")
-new_window.add(second_window, text="Result")
+new_window.add(first_window, text = "Program")
+new_window.add(second_window, text = "Result")
 
 # 1) first_window
-question1 = Label(first_window, text="Qui nage ?")
+question1 = Label(first_window, text = "Qui nage ?")
 input1 = Entry(first_window)
 
-question2 = Label(first_window, text="Quelle nage ?")
+question2 = Label(first_window, text = "Quelle nage ?")
 input2 = Entry(first_window)
 
-question3 = Label(first_window, text="Combien de longueur ?")
+question3 = Label(first_window, text = "Nombre de longueur ?")
 input3 = Entry(first_window)
 
-question1.pack()
+question1.pack(ipady = 20, ipadx = 50)
 input1.pack()
-question2.pack()
+question2.pack(ipady = 20, ipadx = 44)
 input2.pack()
-question3.pack()
+question3.pack(ipady = 20, ipadx = 23)
 input3.pack()
 
-# Bouton pour ajouter les valeurs dans le tableau
-bouton_tableau = Button(first_window, text="Ajouter", command = ajouter_dans_tableau)
-bouton_tableau.pack()
+# Button to add values to the table
+bouton_tableau = Button(first_window, text = "Ajouter", command = ajouter_dans_tableau)
+bouton_tableau.configure(background = "green")
+bouton_tableau.pack(pady=50, ipady = 20, ipadx = 50)
 
 # 2) second_window
-# Creation du tableau
-tableau = ttk.Treeview(second_window, columns=("Nageur", "Nage", "Longueur"), show="headings")
-tableau.heading("Nageur", text="Nageur")
-tableau.heading("Nage", text="Nage")
-tableau.heading("Longueur", text="Longueur")
+# Table creation
+tableau = ttk.Treeview(second_window, columns = ("Nageur", "Nage", "Longueur"), show = "headings")
+tableau.heading("Nageur", text = "Nageur")
+tableau.heading("Nage", text = "Nage")
+tableau.heading("Longueur", text = "Longueur")
+
+style = ttk.Style()
+style.theme_use("default")
+style.configure("Treeview.Heading", background="OrangeRed")  # Changez la couleur selon vos préférences
+tableau.column("Nageur", anchor = "center")
+tableau.column("Nage", anchor = "center")
+tableau.column("Longueur", anchor = "center")
+
 tableau.pack()
 
-# Image de fond (in progress)
-canvas_second_window = Canvas(second_window)
-canvas_second_window.pack(fill="both", expand=True)
+new_window.pack(expand = 1, fill = "both")
 
-image_path = "Projet_Tkinter/IMG.png"
-background_image_pil = Image.open(image_path)
-background_image = ImageTk.PhotoImage(background_image_pil)
-
-canvas_second_window.create_image(500, 400, image=background_image)
-
-
-new_window.pack(expand=1, fill="both")
-
-# Boucle de la fenêtre
+# Window loop
 window.mainloop()
