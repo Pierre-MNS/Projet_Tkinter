@@ -56,7 +56,7 @@ tableau.heading("Longueur", text = "Longueur")
 
 style = ttk.Style()
 style.theme_use("default")
-style.configure("Treeview.Heading", background="OrangeRed")  # Changez la couleur selon vos préférences
+style.configure("Treeview.Heading", background = "OrangeRed")  # Changez la couleur selon vos préférences
 tableau.column("Nageur", anchor = "center")
 tableau.column("Nage", anchor = "center")
 tableau.column("Longueur", anchor = "center")
