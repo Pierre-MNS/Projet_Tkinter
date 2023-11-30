@@ -22,8 +22,8 @@ background_image_pil = Image.open(image_path)
 background_image = ImageTk.PhotoImage(background_image_pil)
 
 # Créer l'image de fond dans le canevas
-canvas_second_window.create_image(0, 0, image=background_image)
+canvas_second_window.create_image(500, 400, image = background_image)
 
-new_window.pack(expand=1, fill="both")
+new_window.pack(expand = 1, fill = "both")
 
 window.mainloop()
