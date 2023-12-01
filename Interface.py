@@ -1,8 +1,9 @@
 from tkinter import *
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 # //////////////////////////////////////////
-# Function for adding values to the table
+# Fonction pour ajouter les valeurs dans le tableau
 def ajouter_dans_tableau():
     nageur = input1.get()
     nage = input2.get()
@@ -13,12 +14,12 @@ def ajouter_dans_tableau():
 
 
 
-# Interface creation
+# Creation de l'interface
 window = Tk()
 window.title("Interface Nageur")
 window.minsize(1000, 800)
 
-# Creating the 2 tabs
+# Creation des 2 onglets
 new_window = ttk.Notebook(window)
 first_window = ttk.Frame(new_window)
 second_window = ttk.Frame(new_window)
@@ -32,38 +33,40 @@ input1 = Entry(first_window)
 question2 = Label(first_window, text = "Quelle nage ?")
 input2 = Entry(first_window)
 
-question3 = Label(first_window, text = "Nombre de longueur ?")
+question3 = Label(first_window, text = "Combien de longueur ?")
 input3 = Entry(first_window)
 
-question1.pack(ipady = 20, ipadx = 50)
+question1.pack()
 input1.pack()
-question2.pack(ipady = 20, ipadx = 44)
+question2.pack()
 input2.pack()
-question3.pack(ipady = 20, ipadx = 23)
+question3.pack()
 input3.pack()
 
-# Button to add values to the table
+# Bouton pour ajouter les valeurs dans le tableau
 bouton_tableau = Button(first_window, text = "Ajouter", command = ajouter_dans_tableau)
-bouton_tableau.configure(background = "green")
-bouton_tableau.pack(pady=50, ipady = 20, ipadx = 50)
+bouton_tableau.pack()
 
 # 2) second_window
-# Table creation
-tableau = ttk.Treeview(second_window, columns = ("Nageur", "Nage", "Longueur"), show = "headings")
+# Chargement de l'image de fond
+img = Image.open("Projet_Tkinter/IMG.png")
+img = img.resize((1000, 800), Image.ADAPTIVE)  # Redimensionnez l'image à la taille de la fenêtre
+img = ImageTk.PhotoImage(img)
+
+# Affichage de l'image de fond dans un canevas (Canvas)
+canvas = Canvas(second_window, width = 1000, height = 800)
+canvas.create_image(0, 0, image = img, anchor = "nw")
+canvas.pack()
+
+# Creation du tableau
+tableau = ttk.Treeview(second_window, columns=("Nageur", "Nage", "Longueur"), show = "headings")
 tableau.heading("Nageur", text = "Nageur")
 tableau.heading("Nage", text = "Nage")
 tableau.heading("Longueur", text = "Longueur")
+tableau.place(relx = 0.5, rely = 0.5, anchor = "center")
 
-style = ttk.Style()
-style.theme_use("default")
-style.configure("Treeview.Heading", background = "OrangeRed")  # Changez la couleur selon vos préférences
-tableau.column("Nageur", anchor = "center")
-tableau.column("Nage", anchor = "center")
-tableau.column("Longueur", anchor = "center")
-
-tableau.pack()
 
 new_window.pack(expand = 1, fill = "both")
 
-# Window loop
+# Boucle de la fenêtre
 window.mainloop()
