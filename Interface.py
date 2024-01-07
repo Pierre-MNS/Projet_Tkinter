@@ -3,20 +3,20 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 
 # //////////////////////////////////////////
-# Fonction pour ajouter les valeurs dans le tableau
-def ajouter_dans_tableau():
-    nageur = input1.get()
-    nage = input2.get()
-    longueur = input3.get()
+# Fonction pour add les valeurs dans le table
+def add_tables():
+    swimmer = input1.get()
+    swim = input2.get()
+    lenght = input3.get()
 
-    tableau.insert("", "end", values = (nageur, nage, longueur))
+    table.insert("", "end", values = (swimmer, swim, lenght))
 # //////////////////////////////////////////
 
 
 
 # Creation de l'interface
 window = Tk()
-window.title("Interface Nageur")
+window.title("Interface swimmer")
 window.minsize(1000, 800)
 
 # Creation des 2 onglets
@@ -27,13 +27,13 @@ new_window.add(first_window, text = "Program")
 new_window.add(second_window, text = "Result")
 
 # 1) first_window
-question1 = Label(first_window, text = "Qui nage ?")
+question1 = Label(first_window, text = "Who swim ?")
 input1 = Entry(first_window)
 
-question2 = Label(first_window, text = "Quelle nage ?")
+question2 = Label(first_window, text = "Which swim ?")
 input2 = Entry(first_window)
 
-question3 = Label(first_window, text = "Combien de longueur ?")
+question3 = Label(first_window, text = "How many lenght ?")
 input3 = Entry(first_window)
 
 question1.pack()
@@ -43,9 +43,9 @@ input2.pack()
 question3.pack()
 input3.pack()
 
-# Bouton pour ajouter les valeurs dans le tableau
-bouton_tableau = Button(first_window, text = "Ajouter", command = ajouter_dans_tableau)
-bouton_tableau.pack()
+# Bouton pour ajouter les valeurs dans le table
+Button_Tables = Button(first_window, text = "add", command = add_tables)
+Button_Tables.pack()
 
 # 2) second_window
 # Chargement de l'image de fond
@@ -59,11 +59,11 @@ canvas.create_image(0, 0, image = img, anchor = "nw")
 canvas.pack()
 
 # Creation du tableau
-tableau = ttk.Treeview(second_window, columns=("Nageur", "Nage", "Longueur"), show = "headings")
-tableau.heading("Nageur", text = "Nageur")
-tableau.heading("Nage", text = "Nage")
-tableau.heading("Longueur", text = "Longueur")
-tableau.place(relx = 0.5, rely = 0.5, anchor = "center")
+table = ttk.Treeview(second_window, columns=("swimmer", "swim", "lenght"), show = "headings")
+table.heading("swimmer", text = "swimmer")
+table.heading("swim", text = "swim")
+table.heading("lenght", text = "lenght")
+table.place(relx = 0.5, rely = 0.5, anchor = "center")
 
 
 new_window.pack(expand = 1, fill = "both")
